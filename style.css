@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root{
+    --blue: #0b3d91;
+    --black:#192a56;
+    --light-color:#666;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0, .1);
+}
+
+*{
+font-family: 'Nunito', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+text-decoration: none;
+outline: none;
+border: none;
+text-transform: capitalize;
+transition: all .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+section{
+    padding: 2rem 9%;
+}
+
+section:nth-child(even){
+    background: #eee;
+}
+
+.sub-heading{
+    text-align: center;
+    color: var(--blue);
+    font-size: 5rem;
+    padding-top: 1rem;
+}
+
+.heading{
+    text-align: center;
+    color: var(--black);
+    font-size: 3rem;
+    padding-top: 2rem;
+    text-transform: uppercase;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--black);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: .8rem 3rem;
+}
+
+.btn:hover{
+    background: var(--blue);
+    letter-spacing: .1rem;
+}
+
+
+.like_btn{
+    background: transparent;
+    right: 70px;
+    top: 10px;
+    font-size: 3rem;
+    outline: none;
+    color: white;
+    position: absolute;
+}
+
+.like_btn i:hover{
+    cursor: pointer;
+    color: rgb(250, 69, 69);
+}
+
+/*header section*/
+
+header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+header .logo{
+    color: var(--black);
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+
+header .icons i{
+    cursor: POINTER;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    background: #eee;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--black);
+}
+
+header .icons i:hover{
+    color: #fff;
+    background: var(--blue);
+    transform: rotate(360deg);
+}
+
+
+#search-form{
+    position: fixed;
+    top: -110%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1004;
+    background: rgba(0,0,0, .8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+
+#search-form.active{
+    top: 0;
+}
+
+
+#search-form #search-box{
+    width: 50rem;
+    border-bottom: .1rem solid #fff;
+    color: #fff;
+    padding: 1rem 0;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+}
+
+#search-form #search-box::placeholder{
+    color: #eee;
+}
+
+#search-form #search-box::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+}
+
+#search-form label{
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+#search-form label:hover{
+    color: var(--blue);
+}
+
+#search-form #close{
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+    top: 2rem;
+    right: 2rem;
+    font-size: 5rem;
+}
+
+/*today section*/
+
+.today{
+    padding-top: 9rem;
+}
+
+.today .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    padding-top: 5rem;
+}
+
+.today .row .image{
+    flex: 1 1 45rem;
+    position: relative;
+}
+
+.today .row .image img{
+    width: 100%;
+    padding-right: 5rem;
+}
+
+.today .row .content{
+    flex: 1 1 45rem;
+}
+
+.today .row .content h3{
+    color: var(--black);
+    font-size: 4rem;
+    padding: .5rem 0;
+}
+.today .row .content p{
+    color: var(--black);
+    font-size: 1.5rem;
+    padding: .5rem 0;
+    line-height: 1.7;
+}
+
+
+
+/*week section*/
+.week .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    gap:1.5rem;
+    padding-top: 5rem;
+}
+
+.week .box-container .box{
+    background: #fff;
+    border:.1rem solid rgba(0,0,0,.2);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);    
+    position: relative;
+}
+
+
+.week .box-container .box .image{
+    height: 25rem;
+    width: 100%;
+    padding: 1.5rem;
+    /*The CSS overflow property controls what happens to content that is too big to fit into an area.
+    hidden - The overflow is clipped, and the rest of the content will be invisible*/
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+.week .box-container .box .image .like_btn{
+    right: 20px;
+    top: 20px;
+    font-size: 2rem;
+}
+
+.week .box-container .box .image img{
+    height: 100%;
+    width: 100%;
+    border-radius: .5rem;
+    /*The CSS object-fit property is used to specify how an <img> or <video> should be resized to fit its container.*/
+    /*cover - The image keeps its aspect ratio and fills the given dimension. The image will be clipped to fit*/
+    object-fit: cover;
+}
+
+.week .box-container .box .content{
+    padding: 1rem;
+    padding-top: 0;
+   
+}
+
+.week .box-container .box .week_btn{
+    cursor: pointer;
+    position: absolute;
+    top: 23rem;
+    right: 1.8rem;
+}
+
+.clicker {
+    outline:none;
+    cursor:pointer;
+}
+    
+.clicker:focus + #week_explanation1{
+    display:block;
+}
+.clicker:focus + #week_explanation2{
+    display:block;
+}
+.clicker:focus + #week_explanation3{
+    display:block;
+}
+.clicker:focus + #week_explanation4{
+    display:block;
+}
+.clicker:focus + #week_explanation5{
+    display:block;
+}
+.clicker:focus + #week_explanation6{
+    display:block;
+}
+
+.week .box-container .box .content .stars{
+    padding-bottom: 1rem;
+}
+
+.week .box-container .box .content .stars i{
+    font-size: 1.7rem;
+    color: var(--blue);
+
+}
+
+.week .box-container .box .content h3{
+    color: var(--black);
+    font-size: 2.5rem;
+}
+.week .box-container .box .content p{
+    color: var(--light-color);
+    font-size: 1.6rem;
+    padding: .5rem 0;
+    line-height: 1.5;
+}
+
+.week .box-container .box .content .price{
+    color: var(--blue);
+    margin-left: 1rem;
+    font-size: 2rem;
+}
+
+#week_explanation6,
+#week_explanation1,
+#week_explanation2,
+#week_explanation3,
+#week_explanation4,
+#week_explanation5{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    text-align: justify;
+    padding: 1rem 1rem;
+    color: #fff;
+    background-color: #000;
+    height: 100%;
+    font-size: 1.2rem;
+}
+
+/*showcase section*/
+
+
+.swiper-wrapper{
+    width: 20%;
+    padding-top: 5rem;
+}
+
+/*footer*/
+
+.footer .credit{
+    text-align: center;
+    border-top: .1rem solid rgba(0,0,0, .1);
+    font-size: 1rem;
+    color: var(--black);
+    padding: .5rem;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+
+
+
+
+/* .loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.loader-container img{
+    width: 35rem;
+}
+
+.loader-container.fade-out{
+    top: 110%;
+    opacity: 0;
+} */
+
+
+
+/*media queries*/
+
+@media (max-width:991px) {
+    html{
+        font-size: 55%;
+    }    
+
+    header{
+        padding: 1rem 2rem;
+    }
+
+    section{
+        padding: 2rem;
+    }
+}
+
+
+@media (max-width:768px) {
+    header .icons i#menu-bars{
+        display: inline-block;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: .1rem solid rgba(0,0,0, .2);
+        border-bottom: .1rem solid rgba(0,0,0, .2);
+        padding: 1rem;
+        clip-path: polygon(0 0,100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active{
+        clip-path: polygon(0 0,100% 0, 100% 100%, 0 100%);
+    }
+
+
+    header .navbar a{
+        display: block ;
+        padding: 1.5rem;
+        margin: 1rem;
+        font-size: 2rem;
+        background: #eee;
+    }
+
+    #search-form #search-box{
+        width: 90%;
+        margin: 0 1rem;
+    }
+
+}
+
+@media (max-width:450px) {
+    html{
+        font-size: 50%;
+    }    
+
+
+}
