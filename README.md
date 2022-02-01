@@ -1,6 +1,6 @@
 # Introduction
 - This is a NASA gallery website
-- For website display, please go to: https://jenniengi.github.io/shopifyinternchallenge/
+- For website display, please go to: https://jenniengi.github.io/nasagallery/
 - The purpose is to show skills in HTML, CSS, JavaScript and API
 
 ## Code Explaination
