@@ -23,8 +23,30 @@
 
 <!-- search form  -->
     <form action="" id="search-form">
-        <input type="search" id="search-box" placeholder="search here...">
-        <label for="search-box" class="fas fa-search"></label>
+        <!-- <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label> -->
+
+        <label for="datepiceker" class="datepicker">Pick a date:
+        <input id="datepicker" type="date" min="" max="" > 
+        </label>
+    
+        <div class="search_container">
+            
+            <section id="media-section">
+            </section>
+    
+            <section class="title-section">
+            <h2 id="title"></h2>
+            <p id="date"></p>
+            <small style="display: block;" id="copyright" ></small>
+            
+            <div class="description-div">
+             <p id="description"></p>
+            </div>
+            </section>
+        
+        </div>
+
         <i class="fas fa-times" id="close"></i>
     </form>
 
