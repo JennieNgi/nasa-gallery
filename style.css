@@ -123,6 +123,7 @@ header .icons i:hover{
     transform: rotate(360deg);
 }
 
+/* search form */
 
 #search-form{
     position: fixed;
@@ -146,33 +147,13 @@ header .icons i:hover{
 }
 
 
-#search-form #search-box{
-    width: 50rem;
-    border-bottom: .1rem solid #fff;
-    color: #fff;
-    padding: 1rem 0;
-    font-size: 3rem;
-    text-transform: none;
-    background: none;
-}
-
-#search-form #search-box::placeholder{
-    color: #eee;
-}
-
-#search-form #search-box::-webkit-search-cancel-button{
-    -webkit-appearance: none;
-}
-
 #search-form label{
     color: #fff;
     cursor: pointer;
     font-size: 3rem;
 }
 
-#search-form label:hover{
-    color: var(--blue);
-}
+
 
 #search-form #close{
     position: absolute;
@@ -183,6 +164,15 @@ header .icons i:hover{
     font-size: 5rem;
 }
 
+#datepicker{
+    margin-top: 2rem;
+    box-sizing: border-box;
+    /* width: 100%; */
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+
 #title{
     font-size: 3rem;
 }
@@ -191,36 +181,36 @@ header .icons i:hover{
     font-size: 2rem;
 }
 
+.video-div{
+    height: 100%;
+    width: 100%;
+}
+
+#videoLink{
+    height: 100%;
+    width: 100%;
+}
+
 #media-section{
+    height: 100%;
     border: solid 2px #fff;
+    padding: 0;
+    
 }
 
 .search_container{
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 2rem;
-    width: 70%;
+    width: 90%;
+    height: 100%;
 }
 
 .title-section{
     padding: 1rem;
-}
-
-#datepicker{
-    box-sizing: border-box;
-    /* width: 100%; */
-    padding: 2rem;
-    border-radius: 0.5rem;
-}
-
-
-#image_of_the_day{
-    width: 100%;
     height: 100%;
-}
-
-.description-div{
-    padding-top: 1rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 #description{
@@ -228,7 +218,19 @@ header .icons i:hover{
     text-align: justify;
     font-size: 1.1rem;
     padding:1rem;
+    width: 100%;
+    height: 100%; 
 } 
+
+.image-div{
+    width: 100%;
+    height: 100%;
+}
+
+#image_of_the_day{
+    width: 100%;
+    height: 100%;
+}
 
 /*today section*/
 
@@ -236,54 +238,63 @@ header .icons i:hover{
     padding-top: 9rem;
 }
 
-.today .row{
+.today_container{
     display: flex;
-    flex-wrap: wrap;
     gap: 1.5rem;
     align-items: center;
     padding-top: 5rem;
 }
 
-.today .row .image{
+#today_media-section{
+    width: 50%;
+    height: 20%;
+}
+
+#today_hdimg{
+    width: 500px;
+}
+
+.today_image{
     flex: 1 1 45rem;
     position: relative;
 }
 
-.today .row .image img{
+#today_img{
     width: 100%;
     padding-right: 5rem;
-}
+} 
 
-.today .row .content{
+#today_content{
     flex: 1 1 45rem;
 }
 
-.today .row .content h3{
+#today_title{
     color: var(--black);
     font-size: 4rem;
     padding: .5rem 0;
 }
-.today .row .content p{
+#today_date, #today_explanation{
     color: var(--black);
     font-size: 1.5rem;
     padding: .5rem 0;
     line-height: 1.7;
 }
-#week_explanation0{
+
+#today_explanation{
     text-align: justify;
 }
 
 
 
-/*week section*/
-.week .box-container{
+/*month section*/
+.month .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
     gap:1.5rem;
     padding-top: 5rem;
 }
 
-.week .box-container .box{
+.month .box-container .box{
     background: #fff;
     border:.1rem solid rgba(0,0,0,.2);
     border-radius: .5rem;
@@ -292,7 +303,7 @@ header .icons i:hover{
 }
 
 
-.week .box-container .box .image{
+.month_image, .month_video-div{
     height: 25rem;
     width: 100%;
     padding: 1.5rem;
@@ -304,13 +315,13 @@ header .icons i:hover{
 
 
 
-.week .box-container .box .image .like_btn{
+.month .box-container .box .image .like_btn{
     right: 20px;
     top: 20px;
     font-size: 2rem;
 }
 
-.week .box-container .box .image img{
+.month_img{
     height: 100%;
     width: 100%;
     border-radius: .5rem;
@@ -319,16 +330,19 @@ header .icons i:hover{
     object-fit: cover;
 }
 
-.week .box-container .box .content{
+.month .box-container .box .content{
     padding: 1rem;
     padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
    
 }
 
-.week .box-container .box .week_btn{
+.month .box-container .box .month_btn{
     cursor: pointer;
     position: absolute;
-    top: 23rem;
+    bottom: .5rem;
     right: 1.8rem;
 }
 
@@ -337,58 +351,33 @@ header .icons i:hover{
     cursor:pointer;
 }
     
-.clicker:focus + #week_explanation1{
-    display:block;
-}
-.clicker:focus + #week_explanation2{
-    display:block;
-}
-.clicker:focus + #week_explanation3{
-    display:block;
-}
-.clicker:focus + #week_explanation4{
-    display:block;
-}
-.clicker:focus + #week_explanation5{
-    display:block;
-}
-.clicker:focus + #week_explanation6{
+.clicker:focus + .month_explanation{
     display:block;
 }
 
-.week .box-container .box .content .stars{
+
+.month .box-container .box .content .stars{
     padding-bottom: 1rem;
 }
 
-.week .box-container .box .content .stars i{
+.month .box-container .box .content .stars i{
     font-size: 1.7rem;
     color: var(--blue);
 
 }
 
-.week .box-container .box .content h3{
+.month .box-container .box .content h3{
     color: var(--black);
     font-size: 2.5rem;
 }
-.week .box-container .box .content p{
+.month .box-container .box .content h1{
     color: var(--light-color);
     font-size: 1.6rem;
     padding: .5rem 0;
     line-height: 1.5;
 }
 
-.week .box-container .box .content .price{
-    color: var(--blue);
-    margin-left: 1rem;
-    font-size: 2rem;
-}
-
-#week_explanation6,
-#week_explanation1,
-#week_explanation2,
-#week_explanation3,
-#week_explanation4,
-#week_explanation5{
+.month_explanation{
     display: none;
     position: absolute;
     z-index: 1;
@@ -490,6 +479,27 @@ header .icons i:hover{
     html{
         font-size: 50%;
     }    
+}
 
+@media (max-width:1200px) {
+    .search_container{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        height: 100%;
+        margin-top: 5rem;
+    }
 
+    #media-section{
+        height: 100%;
+    }
+
+    .title-section{
+        height: 100%;
+        overflow: visible;
+    }
+
+    .datepicker{
+        margin-top: 5rem;
+    }
 }

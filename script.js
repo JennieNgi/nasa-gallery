@@ -1,9 +1,14 @@
 document.querySelector('#search-icon').onclick = () =>{
   document.querySelector('#search-form').classList.toggle('active');
+  // stop the background scrolling when opening the search form
+  document.body.scroll = "no";
+  document.documentElement.style.overflow = 'hidden';
 };
 
 document.querySelector('#close').onclick = () =>{
   document.querySelector('#search-form').classList.remove('active');
+  document.body.scroll = "yes";
+  document.documentElement.style.overflow = 'scroll';
 };
 
 
@@ -24,80 +29,103 @@ const listenForLikes = () => {
 
 listenForLikes();
 
-
-
-//week
+// NASA API
 const url = 'https://api.nasa.gov/planetary/apod?api_key=';
 const api_key = "bqg3CmMH7VM6hIXBqASvJyS6gg2ha7IsIesHA3AN";
+const today = new Date();
 
-const fetchNASADataWeek = async () => {
-  let today = new Date();
-  let yesterday = new Date();
-
-  
-  console.log(yesterday.toLocaleDateString('en-CA'));
-  
-  for (let i = 0; i < 7; i++) {
-    yesterday.setDate(today.getDate() - i);
-    const response = await fetch(`${url}${api_key}&date=${yesterday.toLocaleDateString('en-CA')}`);
-    const data = await response.json();
-    // console.log('NASA APOD data', data)
-    console.log(`week_picture${i}`);
-    document.getElementById(`week_picture${i}`).src = data.hdurl;
-    document.getElementById(`week_title${i}`).textContent = data.title;
-    document.getElementById(`week_date${i}`).textContent = data.date;
-    document.getElementById(`week_explanation${i}`).textContent = data.explanation;
+//generate random date
+function randomDate(date1, date2){
+  function randomValueBetween(min, max) {
+    return Math.random() * (max - min) + min;
   }
-};
-fetchNASADataWeek();
+  var date1 = date1 || '01-01-1970'
+  var date2 = date2 || new Date().toLocaleDateString('en-CA')
+  date1 = new Date(date1).getTime()
+  date2 = new Date(date2).getTime()
+  if( date1>date2){
+      return new Date(randomValueBetween(date2, date1)).toLocaleDateString('en-CA')   
+  } else{
+      return new Date(randomValueBetween(date1, date2)).toLocaleDateString('en-CA')  
 
-// gallery
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 4,
-  spaceBetween: 30,
-  centeredSlides: true,
-  autoplay: {
-    delay: 1500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    640: {
-      slidesPerView: 2,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 4,
-    },
-  },
-});
+  }
+}
+
+console.log(randomDate(today, '1995/06/16'));
 
 
-const fetchNASADataRandom = async () => {
-  let today = new Date();
-  let random_date = new Date();
+// Today
+const fetchNASADataToday = async () => {
+  const mediaSection = document.querySelector("#today_media-section");
+
+  const imageSection =`<a id="today_hdimg" href="" target="-blank">
+  <div class="today_image">
+  <img id="today_img" src="" alt="image-by-nasa">
+  </div>
+  </a>`;
+
+  const videoSection=`<div class="video-div"> 
+  <iframe id="today_videoLink" src="" frameborder="0">
+  </iframe>
+  </div>`;
+
+  const response = await fetch(`${url}${api_key}&date=${today.toLocaleDateString('en-CA')}`);
+  const data = await response.json();
+  console.log(data);
+
+  if(data.media_type=="video"){
+        mediaSection.innerHTML=videoSection;
+        document.getElementById("today_videoLink").src=data.url;
+      }else{
+        mediaSection.innerHTML=imageSection;
+        document.getElementById("today_hdimg").href=data.hdurl;
+        document.getElementById("today_img").src=data.url;
+    }
+  document.getElementById("today_title").textContent = data.title;
+  document.getElementById("today_date").textContent = data.date;
+  document.getElementById("today_explanation").textContent = data.explanation;
   
-  for (let i = 0; i < 10; i++) {
-    random_date.setDate(today.getDate() - Math.floor((Math.random() * 200) + 1));
-    const response = await fetch(`${url}${api_key}&date=${random_date.toLocaleDateString('en-CA')}`);
+};
+
+fetchNASADataToday();
+
+// Month
+const fetchNASADataMonth = async () => {
+  const monthMediaList = document.querySelectorAll(".month_media-section");
+  const monthImageSection =`<a class="month_hdimg" href="" target="-blank"><div class="month_image"><img class="month_img" src="" alt="image-by-nasa"></div></a>`;
+  const monthVideoSection=`<div class="month_video-div"><iframe class="month_videoLink" src="" frameborder="0"></iframe></div>`;
+
+
+  for (let media of monthMediaList){
+    const response = await fetch(`${url}${api_key}&date=${randomDate(today, '1995/06/16')}`);
     const data = await response.json();
-    // console.log('NASA APOD data', data)
-    console.log(`showcase${i}`);
-    document.getElementById(`showcase${i}`).src = data.hdurl;
+    console.log(data);
+    if(data.media_type=="video"){
+          media.innerHTML=monthVideoSection;
+          media.childNodes[0].childNodes[0].src=data.url;
+    }else{
+        media.innerHTML=monthImageSection;
+        media.childNodes[0].href=data.hdurl;
+        media.childNodes[0].childNodes[0].childNodes[0].src=data.url;
+    }
+
+    // console.log(media.nextSibling.nextSibling.childNodes[1]);
+    media.nextSibling.nextSibling.childNodes[1].textContent = data.title;
+    media.nextSibling.nextSibling.childNodes[2].textContent = data.date;
+    media.previousSibling.previousSibling.textContent = data.explanation;
     
   }
 };
-fetchNASADataRandom();
 
-//search date
+fetchNASADataMonth();
+
+
+
+// search date
 
 function nasarequested(){
-  const baseUrl = 'https://api.nasa.gov/planetary/apod?api_key=';
-  const apiKey = "bqg3CmMH7VM6hIXBqASvJyS6gg2ha7IsIesHA3AN";
+  // const baseUrl = 'https://api.nasa.gov/planetary/apod?api_key=';
+  // const apiKey = "bqg3CmMH7VM6hIXBqASvJyS6gg2ha7IsIesHA3AN";
   const dateInput = document.querySelector("#datepicker");
   const title = document.querySelector("#title");
   const copyright = document.querySelector("#copyright");
@@ -120,7 +148,7 @@ function nasarequested(){
 
   function fetchData(){
     try{
-      fetch(baseUrl+apiKey+newDate)
+      fetch(url+api_key+newDate)
       .then(response=> response.json())
       .then(json=>{
       console.log(json);
