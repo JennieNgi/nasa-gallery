@@ -284,6 +284,11 @@ header .icons i:hover{
     text-align: justify;
 }
 
+#today_videoLink{
+    width: 100%;
+    height: 100%;
+}
+
 
 
 /*month section*/
@@ -311,6 +316,11 @@ header .icons i:hover{
     hidden - The overflow is clipped, and the rest of the content will be invisible*/
     overflow: hidden;
     position: relative;
+}
+
+.month_videoLink{
+    width: 100%;
+    height: 100%;
 }
 
 
