@@ -1,5 +1,5 @@
 # Introduction
-- This is a NASA gallery website
+- NASA Gallery is a web application that allows users to search and view photos from NASA's image library. The application uses the NASA Image and Video Library API to retrieve data and display the photos.
 - For website display, please go to: https://jenniengi.github.io/nasagallery/
 - The purpose is to show skills in HTML, CSS, JavaScript and API
 
