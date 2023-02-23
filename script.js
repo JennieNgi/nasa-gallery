@@ -44,15 +44,11 @@ function randomDate(date1, date2){
   date1 = new Date(date1).getTime()
   date2 = new Date(date2).getTime()
   if( date1>date2){
-      return new Date(randomValueBetween(date2, date1)).toLocaleDateString('en-CA')   
+      return new Date(randomValueBetween(date2, date1)).toISOString().slice(0, 10)   
   } else{
-      return new Date(randomValueBetween(date1, date2)).toLocaleDateString('en-CA')  
-
+      return new Date(randomValueBetween(date1, date2)).toISOString().slice(0, 10)  
   }
 }
-
-console.log(randomDate(today, '1995/06/16'));
-
 
 // Today
 const fetchNASADataToday = async () => {
@@ -69,7 +65,7 @@ const fetchNASADataToday = async () => {
   </iframe>
   </div>`;
 
-  const response = await fetch(`${url}${api_key}&date=${today.toLocaleDateString('en-CA')}`);
+  const response = await fetch(`${url}${api_key}&date=${today.toISOString().slice(0, 10)}`);
   const data = await response.json();
   console.log(data);
 
@@ -132,7 +128,7 @@ function nasarequested(){
   const mediaSection = document.querySelector("#media-section");
   const information = document.querySelector("#description");
 
-  const currentDate =new Date().toLocaleDateString('en-CA');
+  const currentDate =new Date().toISOString().slice(0, 10);
   console.log(currentDate);
 
   const imageSection =`<a id="hdimg" href="" target="-blank">
