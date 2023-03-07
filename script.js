@@ -67,19 +67,41 @@ const fetchNASADataToday = async () => {
 
   const response = await fetch(`${url}${api_key}&date=${today.toISOString().slice(0, 10)}`);
   const data = await response.json();
+  console.log(data.code);
   console.log(data);
 
-  if(data.media_type=="video"){
-        mediaSection.innerHTML=videoSection;
-        document.getElementById("today_videoLink").src=data.url;
-      }else{
-        mediaSection.innerHTML=imageSection;
-        document.getElementById("today_hdimg").href=data.hdurl;
-        document.getElementById("today_img").src=data.url;
+  // checking if NASA haven't updated Today's best photo
+  if (data.code == 404){
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    console.log(yesterday)
+    const response = await fetch(`${url}${api_key}&date=${yesterday.toISOString().slice(0, 10)}`);
+    const data = await response.json();
+    if(data.media_type=="video"){
+      mediaSection.innerHTML=videoSection;
+      document.getElementById("today_videoLink").src=data.url;
+    }else{
+      mediaSection.innerHTML=imageSection;
+      document.getElementById("today_hdimg").href=data.hdurl;
+      document.getElementById("today_img").src=data.url;
     }
-  document.getElementById("today_title").textContent = data.title;
-  document.getElementById("today_date").textContent = data.date;
-  document.getElementById("today_explanation").textContent = data.explanation;
+    document.getElementById("today_title").textContent = data.title;
+    document.getElementById("today_date").textContent = data.date;
+    document.getElementById("today_explanation").textContent = data.explanation;
+  }else {
+    if(data.media_type=="video"){
+          mediaSection.innerHTML=videoSection;
+          document.getElementById("today_videoLink").src=data.url;
+        }else{
+          mediaSection.innerHTML=imageSection;
+          document.getElementById("today_hdimg").href=data.hdurl;
+          document.getElementById("today_img").src=data.url;
+      }
+      document.getElementById("today_title").textContent = data.title;
+      document.getElementById("today_date").textContent = data.date;
+      document.getElementById("today_explanation").textContent = data.explanation;
+  }
+  
   
 };
 
